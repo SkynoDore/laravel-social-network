@@ -1,9 +1,6 @@
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
-import { Transition } from '@headlessui/react';
 import { Link, useForm, usePage } from '@inertiajs/react';
+import { Transition } from '@headlessui/react';
+import { useState } from 'react';
 
 export default function UpdateProfileInformation({
     mustVerifyEmail,
@@ -20,80 +17,83 @@ export default function UpdateProfileInformation({
 
     const submit = (e) => {
         e.preventDefault();
-
         patch(route('profile.update'));
     };
 
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">
+                <h2 className="h5 font-weight-bold text-dark">
                     Profile Information
                 </h2>
-
-                <p className="mt-1 text-sm text-gray-600">
+                <p className="mt-2 text-muted">
                     Update your account's profile information and email address.
                 </p>
             </header>
 
-            <form onSubmit={submit} className="mt-6 space-y-6">
-                <div>
-                    <InputLabel htmlFor="name" value="Name" />
-
-                    <TextInput
+            <form onSubmit={submit} className="mt-4">
+                <div className="mb-3">
+                    <label htmlFor="name" className="form-label">
+                        Name
+                    </label>
+                    <input
                         id="name"
-                        className="mt-1 block w-full"
+                        type="text"
+                        className={`form-control ${errors.name ? 'is-invalid' : ''}`}
                         value={data.name}
                         onChange={(e) => setData('name', e.target.value)}
                         required
-                        isFocused
                         autoComplete="name"
                     />
-
-                    <InputError className="mt-2" message={errors.name} />
+                    {errors.name && (
+                        <div className="invalid-feedback">{errors.name}</div>
+                    )}
                 </div>
 
-                <div>
-                    <InputLabel htmlFor="email" value="Email" />
-
-                    <TextInput
+                <div className="mb-3">
+                    <label htmlFor="email" className="form-label">
+                        Email
+                    </label>
+                    <input
                         id="email"
                         type="email"
-                        className="mt-1 block w-full"
+                        className={`form-control ${errors.email ? 'is-invalid' : ''}`}
                         value={data.email}
                         onChange={(e) => setData('email', e.target.value)}
                         required
                         autoComplete="username"
                     />
-
-                    <InputError className="mt-2" message={errors.email} />
+                    {errors.email && (
+                        <div className="invalid-feedback">{errors.email}</div>
+                    )}
                 </div>
 
                 {mustVerifyEmail && user.email_verified_at === null && (
-                    <div>
-                        <p className="mt-2 text-sm text-gray-800">
+                    <div className="mb-3">
+                        <p className="text-muted">
                             Your email address is unverified.
                             <Link
                                 href={route('verification.send')}
                                 method="post"
                                 as="button"
-                                className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                className="btn btn-link p-0 text-decoration-none"
                             >
                                 Click here to re-send the verification email.
                             </Link>
                         </p>
 
                         {status === 'verification-link-sent' && (
-                            <div className="mt-2 text-sm font-medium text-green-600">
-                                A new verification link has been sent to your
-                                email address.
+                            <div className="alert alert-success mt-2" role="alert">
+                                A new verification link has been sent to your email address.
                             </div>
                         )}
                     </div>
                 )}
 
-                <div className="flex items-center gap-4">
-                    <PrimaryButton disabled={processing}>Save</PrimaryButton>
+                <div className="d-flex justify-content-start gap-3">
+                    <button type="submit" className="btn btn-primary" disabled={processing}>
+                        Save
+                    </button>
 
                     <Transition
                         show={recentlySuccessful}
@@ -102,7 +102,7 @@ export default function UpdateProfileInformation({
                         leave="transition ease-in-out"
                         leaveTo="opacity-0"
                     >
-                        <p className="text-sm text-gray-600">
+                        <p className="text-muted">
                             Saved.
                         </p>
                     </Transition>

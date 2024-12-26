@@ -1,17 +1,15 @@
-// resources/js/Pages/Welcome.jsx
 import { Head } from '@inertiajs/react';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 
-export default function Welcome({ auth}) {
+export default function About({ auth}) {
     return (
         <>
-            <Head title="Welcome" />
-            <div>
-                <div className="d-flex flex-column justify-content-center text-center bg-light">
+            <Head title="About" />
+<div className="d-flex flex-column justify-content-center text-center bg-light">
                     <Navbar auth={auth} />
                     <main className="mt-5 text-dark w-75 mx-auto">
-                        <p>Hola mundo!</p>
+                        <p>Esta es la página sobre mí</p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam qui minima eaque pariatur hic deleniti fugit cumque, quia, quibusdam ab earum officia voluptas explicabo? Officiis repudiandae mollitia corrupti eligendi perspiciatis!</p>
                         <p>Asperiores omnis explicabo, sunt officia quia, quod laboriosam repellat dolorem repudiandae enim laudantium facilis laborum vel necessitatibus voluptatibus impedit sit animi nostrum! Neque quia minima facere animi culpa eaque eum!</p>
                         <p>Cumque delectus quam vero voluptatum voluptatibus ipsam repellat quasi libero ut omnis, dicta unde corporis nobis at, laboriosam quos sed accusantium eum! Iste aliquam porro totam magni amet placeat voluptate.</p>
@@ -22,7 +20,6 @@ export default function Welcome({ auth}) {
 
                     <Footer/>
                 </div>
-            </div>
         </>
     );
 }

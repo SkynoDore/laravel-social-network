@@ -1,66 +1,93 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Documentación Bluebill
+1. Introducción
+    Stack: Laravel + Inertia.js + React + Vite
+    Nombre del Proyecto: BlueBill
+    Descripción: Aplicación en Laravel para facturación electronica y gestión de procesos.
+    Requisitos Previos:  
+        XAMP o descargar por separado PHP 8.x y MySQL
+        Composer
+        Node.js
+        npm
+ 
+ 2. Instalación
+    Clonar el Proyecto
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+    git clone https://github.com/larnreact1511/bluebill-v3
+    cd bluebill-v3
 
-## About Laravel
+    Descargar e Instalar Dependencias
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+    Configurar Variables de Entorno
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+        Copia el archivo .env.example y renómbralo como .env:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+    cp .env.example .env
 
-## Learning Laravel
+    Edita el archivo .env y reemplaza los datos de acceso de la base de datos con los tuyos.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    installar composer:
+    composer install
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+    Generar la Clave de la Aplicación:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    php artisan key:generate
 
-## Laravel Sponsors
+    Exportar la Base de Datos
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+    php artisan migrate 
 
-### Premium Partners
+    o pedir al equipo que se les pase una copia de la base de datos.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+    Instalar Dependencias Frontend, en la terminal introducir: 
 
-## Contributing
+    npm install
+    npm run dev
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. Ejecución
+    Iniciar el Servidor Local
 
-## Code of Conduct
+    php artisan serve
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3.1. En App/Providers/AppServiceProvider.php comentar las ultimas 4 lineas, quedando:
+        // URL::forceScheme('https');
+        // if (env('APP_ENV') !== 'local') {
+        //     \URL::forceScheme('https');
+        // }
 
-## Security Vulnerabilities
+2. Estructura del Proyecto
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+        app/: Contiene la lógica del negocio.
+        bootstrap/: Archivo app.php para inicializar la aplicación.
+        config/: Archivos de configuración del proyecto.
+        database/: Migraciones, seeders y archivos relacionados con la base de datos.
+        public/: Carpeta accesible públicamente.
+        resources/: Vistas, archivos de idioma y recursos front-end.
+        resources/app.jsx: Punto de entrada principal
+        resources/Pages/: Componentes React por página
+        routes/: Define las rutas web, API, etc.
+        storage/: Archivos generados por la aplicación (logs, caché).
+        tests/: Pruebas unitarias y funcionales.
+        vendor/: Dependencias gestionadas por Composer.
 
-## License
+        ¿Cómo Funciona Laravel + Inertia.js + React?
+            Laravel (Backend)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+                Laravel es el encargado de manejar las rutas, controladores, modelos y lógica del backend.
+                En lugar de devolver vistas Blade, devuelve una respuesta especial de Inertia.js con los datos necesarios para la vista.
+
+            Inertia.js (Middleware)
+
+                Inertia.js actúa como un puente entre Laravel y React.
+                Cuando una ruta es solicitada, Inertia.js envía una respuesta JSON que incluye:
+                    El nombre del componente React que se debe renderizar.
+                    Los datos necesarios para esa página.
+
+            React (Frontend)
+
+                React renderiza los componentes dinámicamente con los datos enviados desde Laravel a través de Inertia.js.
+                La navegación entre páginas es rápida porque no se recarga toda la aplicación, solo los componentes React necesarios.
+
+            Vite (Empaquetador)
+
+                Vite es un empaquetador rápido para el frontend. Gestiona y construye tus archivos .jsx, .css, etc., para que sean accesibles desde el navegador.
+                Durante el desarrollo, Vite permite hot reloading para que veas los cambios inmediatamente.

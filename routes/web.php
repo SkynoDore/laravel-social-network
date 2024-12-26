@@ -12,7 +12,12 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('welcome');
+
+Route::get('/about', function () {
+    return Inertia::render('About');
+})->name('about'); // Nombramos la ruta como 'about'
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
