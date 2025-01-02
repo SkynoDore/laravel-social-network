@@ -1,9 +1,13 @@
 Documentación Bluebill
 1. Introducción
     Stack: Laravel + Inertia.js + React + Vite
+
     Nombre del Proyecto: BlueBill
+
     Descripción: Un simple feed donde usuarios verificados puedan subir sus noticias
+
     Requisitos Previos:  
+
         XAMP o descargar por separado PHP 8.x y MySQL
         Composer
         Node.js
@@ -12,8 +16,8 @@ Documentación Bluebill
  2. Instalación
     Clonar el Proyecto
 
-    git clone https://github.com/larnreact1511/bluebill-v3
-    cd bluebill-v3
+        git clone https://github.com/larnreact1511/bluebill-v3
+        cd bluebill-v3
 
     Descargar e Instalar Dependencias
 
