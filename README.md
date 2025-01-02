@@ -2,7 +2,7 @@ Documentación Bluebill
 1. Introducción
     Stack: Laravel + Inertia.js + React + Vite
     Nombre del Proyecto: BlueBill
-    Descripción: Aplicación en Laravel para facturación electronica y gestión de procesos.
+    Descripción: Un simple feed donde usuarios verificados puedan subir sus noticias
     Requisitos Previos:  
         XAMP o descargar por separado PHP 8.x y MySQL
         Composer
@@ -19,29 +19,28 @@ Documentación Bluebill
 
     Configurar Variables de Entorno
 
-        Copia el archivo .env.example y renómbralo como .env:
+    Copia el archivo .env.example y renómbralo como .env:
 
-    cp .env.example .env
+        cp .env.example .env
 
     Edita el archivo .env y reemplaza los datos de acceso de la base de datos con los tuyos.
 
     installar composer:
-    composer install
+
+        composer install
 
     Generar la Clave de la Aplicación:
 
-    php artisan key:generate
+        php artisan key:generate
 
     Exportar la Base de Datos
 
-    php artisan migrate 
-
-    o pedir al equipo que se les pase una copia de la base de datos.
+        php artisan migrate 
 
     Instalar Dependencias Frontend, en la terminal introducir: 
 
-    npm install
-    npm run dev
+        npm install
+        npm run dev
 
 3. Ejecución
     Iniciar el Servidor Local
@@ -49,6 +48,7 @@ Documentación Bluebill
     php artisan serve
 
 3.1. En App/Providers/AppServiceProvider.php comentar las ultimas 4 lineas, quedando:
+
         // URL::forceScheme('https');
         // if (env('APP_ENV') !== 'local') {
         //     \URL::forceScheme('https');
@@ -69,8 +69,8 @@ Documentación Bluebill
         tests/: Pruebas unitarias y funcionales.
         vendor/: Dependencias gestionadas por Composer.
 
-        ¿Cómo Funciona Laravel + Inertia.js + React?
-            Laravel (Backend)
+    ¿Cómo Funciona Laravel + Inertia.js + React?
+        Laravel (Backend)
 
                 Laravel es el encargado de manejar las rutas, controladores, modelos y lógica del backend.
                 En lugar de devolver vistas Blade, devuelve una respuesta especial de Inertia.js con los datos necesarios para la vista.
