@@ -49,7 +49,7 @@ Documentación Bluebill
 3. Ejecución
     Iniciar el Servidor Local
 
-    php artisan serve
+        php artisan serve
 
 3.1. En App/Providers/AppServiceProvider.php comentar las ultimas 4 lineas, quedando:
 
@@ -60,8 +60,8 @@ Documentación Bluebill
 
 2. Estructura del Proyecto
 
-        app/: Contiene la lógica del negocio.
-        bootstrap/: Archivo app.php para inicializar la aplicación.
+        app/: Contiene la lógica de la aplicación.
+        bootstrap/: Archivo app.php para inicializar la aplicación. No está relacionado con front-end ni con Bootstrap CSS.
         config/: Archivos de configuración del proyecto.
         database/: Migraciones, seeders y archivos relacionados con la base de datos.
         public/: Carpeta accesible públicamente.
@@ -76,8 +76,8 @@ Documentación Bluebill
     ¿Cómo Funciona Laravel + Inertia.js + React?
         Laravel (Backend)
 
-                Laravel es el encargado de manejar las rutas, controladores, modelos y lógica del backend.
-                En lugar de devolver vistas Blade, devuelve una respuesta especial de Inertia.js con los datos necesarios para la vista.
+            Laravel es el encargado de manejar las rutas, controladores, modelos y lógica del backend.
+            En lugar de devolver vistas Blade, devuelve una respuesta especial de Inertia.js con los datos necesarios para la vista.
 
             Inertia.js (Middleware)
 
