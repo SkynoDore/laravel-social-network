@@ -1,26 +1,21 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
+use App\Http\Controllers\NoteController;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-})->name('welcome');
+//notes
 
-Route::get('/about', function () {
-    return Inertia::render('About');
-})->name('about'); // Nombramos la ruta como 'about'
-
+Route::get('/note', [NoteController::class, 'index'])->name('note.index');
+Route::get('/note/create', [NoteController::class, 'create'])->name('note.create');
+Route::post('/note/store', [NoteController::class,'store'])->name('note.store');
+Route::get('/note/edit/{note}', [NoteController::class, 'edit'])->name('note.edit');
+Route::put('/note/update/{note}', [NoteController::class, 'update' ])->name('note.update');
+Route::get('/note/{note}', [NoteController::class, 'show'])->name('note.show');
+Route::delete('/note/destroy/{note}', [NoteController::class,'destroy'])->name('note.destroy');
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
