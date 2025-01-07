@@ -1,6 +1,7 @@
 Documentación Bluebill
 1. Introducción
-    Stack: Laravel + Inertia.js + React + Vite
+    Stack: Laravel + Blade with Alpine + Pest testing framework + Tailwind + Mariadb.
+    Breeze Starter kit
 
     Nombre del Proyecto: BlueBill
 
@@ -51,12 +52,6 @@ Documentación Bluebill
 
         php artisan serve
 
-3.1. En App/Providers/AppServiceProvider.php comentar las ultimas 4 lineas, quedando:
-
-        // URL::forceScheme('https');
-        // if (env('APP_ENV') !== 'local') {
-        //     \URL::forceScheme('https');
-        // }
 
 2. Estructura del Proyecto
 
