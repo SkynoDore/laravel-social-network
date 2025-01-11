@@ -4,11 +4,11 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NoteController;
 
-Route::get('/', function(){ return view('welcome');})->name('welcome');
-
+Route::get('/', [NoteController::class, 'welcome'])->name('welcome');
+Route::get('/feed', [NoteController::class, 'guest'])->name('note.guest');
 //notes
 
-Route::get('/note', [NoteController::class, 'index'])->name('note.index');
+Route::get('/my-feed', [NoteController::class, 'index'])->name('note.index');
 Route::get('/note/create', [NoteController::class, 'create'])->name('note.create');
 Route::post('/note/store', [NoteController::class,'store'])->name('note.store');
 Route::get('/note/edit/{note}', [NoteController::class, 'edit'])->name('note.edit');

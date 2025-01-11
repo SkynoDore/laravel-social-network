@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Estilos globales para los headings */
+h1 {
+    @apply text-4xl font-bold text-gray-800 text-center;
+}
+
+h2 {
+    @apply text-3xl font-semibold text-gray-700;
+}
+
+h3 {
+    @apply text-2xl font-medium text-gray-600;
+}
