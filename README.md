@@ -47,6 +47,10 @@ Documentación Bluebill
         npm install
         npm run dev
 
+    Crear el enlace simbólico para la carpeta de almacenamiento:
+
+        php artisan storage:link
+
 3. Ejecución
     Iniciar el Servidor Local
 
@@ -68,25 +72,5 @@ Documentación Bluebill
         tests/: Pruebas unitarias y funcionales.
         vendor/: Dependencias gestionadas por Composer.
 
-    ¿Cómo Funciona Laravel + Inertia.js + React?
-        Laravel (Backend)
+3. luego en produccion fijarse de que upload_max_filesize y post_max_size sea de almenos 10240
 
-            Laravel es el encargado de manejar las rutas, controladores, modelos y lógica del backend.
-            En lugar de devolver vistas Blade, devuelve una respuesta especial de Inertia.js con los datos necesarios para la vista.
-
-            Inertia.js (Middleware)
-
-                Inertia.js actúa como un puente entre Laravel y React.
-                Cuando una ruta es solicitada, Inertia.js envía una respuesta JSON que incluye:
-                    El nombre del componente React que se debe renderizar.
-                    Los datos necesarios para esa página.
-
-            React (Frontend)
-
-                React renderiza los componentes dinámicamente con los datos enviados desde Laravel a través de Inertia.js.
-                La navegación entre páginas es rápida porque no se recarga toda la aplicación, solo los componentes React necesarios.
-
-            Vite (Empaquetador)
-
-                Vite es un empaquetador rápido para el frontend. Gestiona y construye tus archivos .jsx, .css, etc., para que sean accesibles desde el navegador.
-                Durante el desarrollo, Vite permite hot reloading para que veas los cambios inmediatamente.

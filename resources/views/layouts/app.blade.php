@@ -10,7 +10,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased bg-gray-100">
 
     <!-- Mostrar navegación según el estado de autenticación -->
     @auth
@@ -20,13 +20,11 @@
     @endauth
 
     @isset($header)
-        <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <header>
                 {{ $header }}
-            </div>
         </header>
     @endisset
-    <div class="container mx-24 p-3 pt-6 ">
+    <div class="container w-7xl mx-auto p-3 pt-6 ">
         @yield('Content')
     </div>
 </body>

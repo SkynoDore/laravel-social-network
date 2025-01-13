@@ -7,7 +7,6 @@ use App\Http\Controllers\NoteController;
 Route::get('/', [NoteController::class, 'welcome'])->name('welcome');
 Route::get('/feed', [NoteController::class, 'guest'])->name('note.guest');
 //notes
-
 Route::get('/my-feed', [NoteController::class, 'index'])->name('note.index');
 Route::get('/note/create', [NoteController::class, 'create'])->name('note.create');
 Route::post('/note/store', [NoteController::class,'store'])->name('note.store');
