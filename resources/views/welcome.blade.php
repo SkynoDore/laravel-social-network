@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title', 'Bienvenido a Mi Blog')
+@section('description', 'Este es un blog de ejemplo creado con Laravel.')
+@section('keywords', 'blog, Laravel, ejemplo, tutorial')
 @section('Content')
 <h1>Hola mundo </h1>
 
@@ -11,8 +13,8 @@
                 :description="Str::words($note->description, 40)"
                 :created="$note->created_at"
                 :image="$note->image"
-                :usuario="$note->user->name"
-                :profileIMG="$note->user"
+                :username="$note->user->name"
+                :user="$note->user"
             />
     </x-notes.note-container>
     @empty

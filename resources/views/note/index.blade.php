@@ -23,8 +23,8 @@
                 :description="Str::words($note->description, 40)"
                 :created="$note->created_at"
                 :image="$note->image"
-                :usuario="$note->user->name"
-                :profileIMG="$note->user">
+                :username="$note->user->name"
+                :user="$note->user">
                     <!-- Botones pasados como slot -->
                     <a href="{{ route('note.show', $note->id) }}" class="text-blue-500 hover:underline">Ver</a> |
                     <a href="{{ route('note.edit', $note->id) }}" class="text-yellow-500 hover:underline">Editar</a> |
