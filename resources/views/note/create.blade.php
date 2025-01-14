@@ -38,9 +38,8 @@
                @error('image')
                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
+                <p class="text-gray-400"> Peso maximo 2MB, formatos admitidos: jpeg, png, jpg, gif, svg</p>
             </div>
-            <p class="text-gray-400"> Peso maximo 2MB, formatos admitidos: jpeg, png, jpg, gif, svg</p>
-
     <!-- Botón de envío -->
     <div>
         <button type="submit"

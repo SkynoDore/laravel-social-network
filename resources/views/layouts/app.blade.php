@@ -25,6 +25,7 @@
         </header>
     @endisset
     <div class="container w-7xl mx-auto p-3 pt-6 ">
+
         @yield('Content')
     </div>
 </body>

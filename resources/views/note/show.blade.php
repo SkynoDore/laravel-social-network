@@ -1,7 +1,13 @@
 @extends('layouts.app')
 
 @section('Content')
-<a href=" {{ route('note.index')}}">Volver </a>
-<h1>{{ $note->title}}</h1>
-<p>{{ $note->description}}</p>
+<x-notes.note-container>
+    <x-notes.note
+        title="{{ $note->title }}"
+        description="{{ $note->description}}"
+        created="{{$note->created_at}}"
+        image="{{ $note->image}}">
+    </x-notes.note>
+</x-notes.note-container>
 @endsection
+

@@ -14,22 +14,23 @@ use Illuminate\Support\Facades\Auth;
 class NoteController extends Controller
 {
 
-    public function welcome(): View
+    public function welcome(): View //el verdadero index, muestra tooodos las notas de todos los usuarios
     {
-        $notes = Note::all();
+        $notes = Note::with('user')->get();
         return view("welcome", compact("notes"));
     }
 
-    public function guest(): View
+    public function index(): View //solo muestra las notas del usuario en concreto
     {
-        $notes = Note::all();
-        return view("note.guest", compact("notes"));
-    }
-    public function index(): View
-    {
-        $notes = Note::all();
+        $notes = Note::with('user')->get();
         return view("note.index", compact("notes"));
     }
+
+    public function show(Note $note): View //solo muestra una nota a la vez
+    {
+        return view('note.show', compact('note'));
+    }
+
     public function create(): View
     {
         $notes = Note::all();
@@ -79,10 +80,7 @@ class NoteController extends Controller
         }
         return redirect()->route('note.index')->with('success', 'Nota actualizada correctamente.');
     }
-    public function show(Note $note): View
-    {
-        return view('note.show', compact('note'));
-    }
+
 
     public function destroy(Request $request, Note $note): RedirectResponse
     {

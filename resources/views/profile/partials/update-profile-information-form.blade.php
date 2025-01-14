@@ -13,7 +13,7 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" enctype="multipart/form-data" class="mt-6 space-y-6">
         @csrf
         @method('patch')
 
@@ -45,6 +45,25 @@
                     @endif
                 </div>
             @endif
+        </div>
+        <!-- imagenes -->
+        <div>
+
+            @if ($user->ProfileIMG)
+                <x-input-label for="imageOld" :value="__('Foto de perfil')" />
+                <img src="{{ asset('storage/' . $user->ProfileIMG) }}" class="w-32 h-32 rounded-full object-cover">
+            @endif
+
+            <div>
+                <x-input-label for="image" :value="__('Subir Foto de perfil')" />
+                <input type="file" name="image" id="image"
+                       class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md bg-gray-50 cursor-pointer focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                       accept="image/*">
+                @error('ProfileIMG')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+                <p class="text-gray-400">Peso máximo 2MB, formatos admitidos: jpeg, png, jpg, gif, svg.</p>
+            </div>
         </div>
 
         <div class="flex items-center gap-4">
