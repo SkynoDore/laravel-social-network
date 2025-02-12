@@ -9,12 +9,14 @@
     @forelse ($notes as $note)
     <x-notes.note-container>
         <x-notes.note
+                :note="$note->id"
                 :title="$note->title"
                 :description="Str::words($note->description, 40)"
                 :created="$note->created_at"
                 :image="$note->image"
                 :username="$note->user->name"
                 :user="$note->user"
+                :comments="$note->comments"
             />
     </x-notes.note-container>
     @empty

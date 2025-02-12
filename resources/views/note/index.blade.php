@@ -19,12 +19,14 @@
         @forelse ($notes as $note)
             <x-notes.note-container>
                 <x-notes.note
+                :note="$note->id"
                 :title="$note->title"
                 :description="Str::words($note->description, 40)"
                 :created="$note->created_at"
                 :image="$note->image"
                 :username="$note->user->name"
-                :user="$note->user">
+                :user="$note->user"
+                :comments="$note->comments">
                     <!-- Botones pasados como slot -->
                     <a href="{{ route('note.show', $note->id) }}" class="text-blue-500 hover:underline">Ver</a> |
                     <a href="{{ route('note.edit', $note->id) }}" class="text-yellow-500 hover:underline">Editar</a> |

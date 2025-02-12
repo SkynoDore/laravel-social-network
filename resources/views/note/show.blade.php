@@ -5,12 +5,14 @@
 <ul>
 <x-notes.note-container>
     <x-notes.note
+    :note="$note->id"
     :title="$note->title"
     :description="$note->description"
     :created="$note->created_at"
     :image="$note->image"
     :username="$note->user->name"
-    :user="$note->user">
+    :user="$note->user"
+    :comments="$note->comments">
     </x-notes.note>
 </x-notes.note-container>
 </ul>

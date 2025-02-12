@@ -28,7 +28,10 @@ class NoteController extends Controller
 
     public function show(Note $note): View //solo muestra una nota a la vez
     {
-        return view('note.show', compact('note'));
+            // Carga los comentarios de la nota
+            $comments = $note->comments()->with('user')->get(); // Incluye el usuario para mostrar el nombre del autor
+
+            return view('note.show', compact('note', 'comments'));
     }
 
     public function create(): View

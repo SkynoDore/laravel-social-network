@@ -74,3 +74,46 @@ Documentación Bluebill
 
 3. luego en produccion fijarse de que upload_max_filesize y post_max_size sea de almenos 10240
 
+4. Overview de la logica
+
+Al modificar tablas de la bbdd, primero evaluar cambios y luego hacer migraciones con
+    php artisan:make migration "name"
+Luego ejecutar migracion con: 
+    php artisan migrate
+
+realizar modelo:
+    php artisan make:model Comment
+
+debes definir los campos que pueden ser asignados masivamente ($fillable) y los que deben permanecer protegidos ($guarded). 
+para establecer relacion con otros modelos:
+
+Ejemplo para relacionar tabla "comments" a la tabla "note
+
+    en el nuevo modelo:
+         public function note()
+        {
+        return $this->belongsTo(Note::class, 'note_id');
+        }
+
+    → Un comentario pertenece a una nota.
+
+
+    En el modelo viejo:
+
+        public function comments()
+        {
+        return $this->hasMany(Comment::class, 'note_id');
+        }
+
+        → Una nota tiene muchos comentarios.
+
+     Con esto, puedes obtener todos los comentarios de una nota con:
+         $note = Note::find(1);
+         $comments = $note->comments;
+
+     O encontrar la nota a la que pertenece un comentario con:
+         $comment = Comment::find(1);
+          $note = $comment->note;
+
+    Para crear controlador:
+        php artisan make:controller "name"

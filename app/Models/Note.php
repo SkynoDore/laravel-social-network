@@ -17,4 +17,9 @@ class Note extends Model
     {
         return $this->belongsTo(User::class, 'userId');
     }
+        public function comments()
+    {
+        return $this->hasMany(Comment::class, 'noteId');
+    }
+
 }
