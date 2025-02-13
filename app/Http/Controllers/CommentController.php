@@ -34,20 +34,37 @@ class CommentController extends Controller
 
         return redirect()->route('note.show', $noteId)->with('success', 'Comentario agregado');
     }
+    public function update(Request $request, Comment $comment)
+    {
+        // Verifica si el usuario es dueño del comentario
+        if ($comment->userId !== Auth::id()) {
+            return redirect()->back()->with('error', 'No tienes permiso para editar este comentario.');
+        }
+
+        // Validar datos
+        $request->validate([
+            'text' => 'required|string|max:1000',
+        ]);
+
+        // Actualizar comentario
+        $comment->update([
+            'text' => $request->text,
+        ]);
+
+        return redirect()->back()->with('success', 'Comentario actualizado correctamente.');
+    }
 
     // Eliminar un comentario
     public function destroy(Comment $comment)
-{
-    // Verifica si el usuario es dueño del comentario
-    if ($comment->userId !== Auth::id()) {
-        return redirect()->back()->with('error', 'No tienes permiso para eliminar este comentario.');
-    }
+    {
+        // Verifica si el usuario es dueño del comentario
+        if ($comment->userId !== Auth::id()) {
+            return redirect()->back()->with('error', 'No tienes permiso para eliminar este comentario.');
+        }
 
-    // Elimina el comentario
-    $comment->delete();
+        // Elimina el comentario
+        $comment->delete();
 
-    return redirect()->back()->with('success', 'Comentario eliminado correctamente.');
-
+        return redirect()->back()->with('success', 'Comentario eliminado correctamente.');
     }
 }
-
