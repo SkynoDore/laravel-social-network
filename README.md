@@ -65,8 +65,8 @@ Documentación Bluebill
         database/: Migraciones, seeders y archivos relacionados con la base de datos.
         public/: Carpeta accesible públicamente.
         resources/: Vistas, archivos de idioma y recursos front-end.
-        resources/app.jsx: Punto de entrada principal
-        resources/Pages/: Componentes React por página
+        resources/views: Punto de entrada principal
+        resources/svg/: iconos svg para la app
         routes/: Define las rutas web, API, etc.
         storage/: Archivos generados por la aplicación (logs, caché).
         tests/: Pruebas unitarias y funcionales.
@@ -76,8 +76,13 @@ Documentación Bluebill
 
 4. Overview de la logica
 
+Para usar iconos svg, utilizamos https://heroicons.com/outline
+hay que fijarse del tipo y del nombre del icono, ya seria llamarlo como si fuera un componente, ejemplo: x-heroicon-o-ellipsis-horizontal class="h-5 w-5"
+
 Al modificar tablas de la bbdd, primero evaluar cambios y luego hacer migraciones con
+
     php artisan:make migration "name"
+    
 Luego ejecutar migracion con: 
     php artisan migrate
 

@@ -70,19 +70,18 @@ use Illuminate\Support\Str;
         <div class="px-6 py-4">
             <h3 class="text-xl font-semibold mb-4">Comentarios</h3>
 
-            @if ($comments->count() > 0)
+            @if ($comments->count() > 0) <!-- Verifica si hay comentarios -->
                 <ul class="space-y-4">
                     @foreach ($comments as $comment)
                         <li class="border-b pb-2 relative">
-                            <strong class="text-gray-800">{{ $comment->user->name }}:</strong>
-                            <p class="text-gray-600">{{ $comment->text }}</p>
-                            @if (Auth::id() === $comment->userId)
+                            <strong class="text-gray-800">{{ $comment->user->name }}</strong>
                             <div class="relative inline-block text-left">
                                 <button onclick="toggleMenu(event)" class="text-gray-500 hover:text-gray-700">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <x-heroicon-o-ellipsis-horizontal class="h-5 w-5" />
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                                     </svg>
                                 </button>
+                                <!-- Menú de opciones -->
                                 <div class="menu hidden origin-top-right absolute z-50 left-0 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                                     <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                                         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Editar</a>
@@ -90,6 +89,9 @@ use Illuminate\Support\Str;
                                     </div>
                                 </div>
                             </div>
+                            <p class="text-gray-600">{{ $comment->text }}</p>
+                            @if (Auth::id() === $comment->userId) <!-- Verifica si el usuario autenticado es el autor del comentario -->
+
                             @endif
                         </li>
                     @endforeach
@@ -97,7 +99,7 @@ use Illuminate\Support\Str;
             @else
                 <p class="text-gray-600">No hay comentarios todavía.</p>
             @endif
-
+                <!-- Formulario para agregar comentarios -->
             @auth
                 <h3 class="text-lg font-semibold mt-6 mb-2">Agregar comentario</h3>
                 <form action="{{ route('comments.store', $note) }}" method="POST" class="space-y-4">
@@ -113,6 +115,7 @@ use Illuminate\Support\Str;
 </li>
 
 <script>
+    <!-- Función para mostrar/ocultar el menú de opciones -->
     function toggleMenu(event) {
         const menu = event.currentTarget.nextElementSibling;
         menu.classList.toggle('hidden');
