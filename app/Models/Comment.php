@@ -9,9 +9,7 @@ class Comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['text', 'userId', 'noteId'];
-    //ya al especificar los campos que se pueden llenar, no es necesario especificar los campos que no se pueden llenar
-
+    protected $fillable = ['text', 'userId', 'noteId']; //ya al especificar los campos que se pueden llenar, no es necesario especificar los campos que no se pueden llenar
     // Relación con el usuario (Un comentario pertenece a un usuario)
     public function user()
     {

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Note;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\RedirectResponse as HttpFoundationRedirectResponse;
 
 class CommentController extends Controller
 {
@@ -34,17 +36,18 @@ class CommentController extends Controller
     }
 
     // Eliminar un comentario
-    public function destroy($id)
-    {
-        $comment = Comment::findOrFail($id);
+    public function destroy(Comment $comment)
+{
+    // Verifica si el usuario es dueño del comentario
+    if ($comment->userId !== Auth::id()) {
+        return redirect()->back()->with('error', 'No tienes permiso para eliminar este comentario.');
+    }
 
-        // Verifica si el usuario es dueño del comentario
-        if ($comment->user_id !== Auth::id()) {
-            return response()->json(['error' => 'No tienes permiso para eliminar este comentario'], 403);
-        }
-        // Elimina el comentario
-        $comment->delete();
-        return response()->json(['message' => 'Comentario eliminado'], 200);
+    // Elimina el comentario
+    $comment->delete();
+
+    return redirect()->back()->with('success', 'Comentario eliminado correctamente.');
+
     }
 }
 

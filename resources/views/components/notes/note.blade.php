@@ -85,7 +85,11 @@ use Illuminate\Support\Str;
                                 <div class="menu hidden origin-top-right absolute z-50 left-0 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                                     <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                                         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Editar</a>
-                                        <button class="block w-full text-left px-4 py-2 text-sm text-red-700 hover:bg-gray-100 delete-comment" data-comment-id="{{ $comment->id }}" role="menuitem">Eliminar</button>
+                                        <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" onsubmit="return confirm('¿Seguro que quieres eliminar este comentario?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-700 hover:bg-gray-100 px-4 py-2 text-sm">Eliminar</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -130,29 +134,6 @@ use Illuminate\Support\Str;
         }
     });
 
-    const deleteButtons = document.querySelectorAll('.delete-comment');
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const commentId = button.dataset.commentId;
-            if (confirm('¿Estás seguro de eliminar este comentario?')) {
-                fetch(`/comments/${commentId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.message === 'Comentario eliminado') {
-                        location.reload(); // Recarga la página para actualizar los comentarios
-                    } else {
-                        alert(data.error);
-                    }
-                });
-            }
-        });
-    });
 </script>
 </article>
 </li>

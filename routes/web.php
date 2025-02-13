@@ -32,7 +32,7 @@ use App\Http\Controllers\CommentController;
     Route::get('/notes/{noteId}/comments', [CommentController::class, 'index'])->name('comments.index');
 Route::middleware(['auth'])->group(function () {
     Route::post('/notes/{noteId}/comments', [CommentController::class, 'store'])->name('comments.store');
-    Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 });
 
 require __DIR__.'/auth.php'; // Rutas de autenticación

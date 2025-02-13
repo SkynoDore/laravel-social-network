@@ -85,7 +85,7 @@ class NoteController extends Controller
     }
 
 
-    public function destroy(Request $request, Note $note): RedirectResponse
+    public function destroy(Note $note): RedirectResponse
     {
         $note->delete();
         return redirect()->route('note.index');
