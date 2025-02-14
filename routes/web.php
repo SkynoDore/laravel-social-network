@@ -29,7 +29,6 @@ Route::middleware('auth')->group(function () {
     //comments
 use App\Http\Controllers\CommentController;
 
-    Route::get('/notes/{noteId}/comments', [CommentController::class, 'index'])->name('comments.index');
 Route::middleware(['auth'])->group(function () {
     Route::post('/notes/{noteId}/comments', [CommentController::class, 'store'])->name('comments.store');
     Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');

@@ -11,14 +11,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse as HttpFoundationRedirectR
 
 class CommentController extends Controller
 {
-    // Mostrar comentarios de una nota
-    public function index($noteId)
-    {
-        // Buscar la nota
-        $note = Note::findOrFail($noteId);
-        return view('comments.index', compact('note')); // Mostrar vista con los comentarios
-    }
-
     // Crear un nuevo comentario
     public function store(Request $request, $noteId)
     {
@@ -32,7 +24,7 @@ class CommentController extends Controller
             'text' => $request->text,
         ]);
 
-        return redirect()->route('note.show', $noteId)->with('success', 'Comentario agregado');
+        return response()->json(['success' => 'Comentario agregado.', 'userName' => 'tú', 'commentText' => $request->text]);
     }
     public function update(Request $request, Comment $comment)
     {
@@ -51,7 +43,7 @@ class CommentController extends Controller
             'text' => $request->text,
         ]);
 
-        return redirect()->back()->with('success', 'Comentario actualizado correctamente.');
+        return response()->json(['success' => 'Comentario actualizado.', 'comment' => $comment]);
     }
 
     // Eliminar un comentario
@@ -65,6 +57,6 @@ class CommentController extends Controller
         // Elimina el comentario
         $comment->delete();
 
-        return redirect()->back()->with('success', 'Comentario eliminado correctamente.');
+        return response()->json(['success' => 'Comentario eliminado.']);
     }
 }
