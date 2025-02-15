@@ -5,8 +5,8 @@ created
 image
 username
 user
+comments
 -->
-<!-- x-note -->
 <li>
     <article
         class="w-3/6 mx-auto flex flex-col items-start justify-between bg-white shadow-md rounded-lg">
