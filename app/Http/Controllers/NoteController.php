@@ -14,22 +14,26 @@ use Illuminate\Support\Facades\Auth;
 class NoteController extends Controller
 {
 
-    public function welcome(): View //el verdadero index, muestra tooodos las notas de todos los usuarios
+    public function index(): View //el verdadero index, muestra tooodos las notas de todos los usuarios
     {
-        $notes = Note::with('user')->get();
-        return view("welcome", compact("notes"));
+        $notes = Note::with('user')->orderByDesc('created_at')->with(['comments' => function ($query) {$query->limit(3);}])->get();
+        return view("index", compact("notes"));
     }
 
-    public function index(): View //solo muestra las notas del usuario en concreto
+    public function Profile(): View //solo muestra las notas del usuario en concreto
     {
-        $notes = Note::with('user')->get();
-        return view("note.index", compact("notes"));
+        $notes = Note::with('user')
+        ->where('userId', Auth::id()) // Filtrar por usuario autenticado
+        ->orderByDesc('created_at')
+        ->with(['comments' => function ($query) {$query->limit(3);}])
+        ->get();
+        return view("note.profile", compact("notes"));
     }
 
     public function show(Note $note): View //solo muestra una nota a la vez
     {
             // Carga los comentarios de la nota
-            $comments = $note->comments()->with('user')->get(); // Incluye el usuario para mostrar el nombre del autor
+            $comments = $note->comments()->with('user')->get();
 
             return view('note.show', compact('note', 'comments'));
     }
@@ -57,7 +61,7 @@ class NoteController extends Controller
             $note->save();
         }
 
-        return redirect()->route('note.index')->with('success', 'Nota creada exitosamente');
+        return redirect()->route('note.profile')->with('success', 'Nota creada exitosamente');
     }
 
     return redirect()->route('login')->with('error', 'Debes iniciar sesión.');
@@ -81,13 +85,13 @@ class NoteController extends Controller
             $note->image = $imagePath;
             $note->save();
         }
-        return redirect()->route('note.index')->with('success', 'Nota actualizada correctamente.');
+        return redirect()->route('note.profile')->with('success', 'Nota actualizada correctamente.');
     }
 
 
     public function destroy(Note $note): RedirectResponse
     {
         $note->delete();
-        return redirect()->route('note.index');
+        return redirect()->route('note.profile');
     }
 }

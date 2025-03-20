@@ -8,7 +8,11 @@
                     <h3 class="text-xl font-semibold mb-4">Comentarios</h3>
                     <ul class="space-y-4 commentBox">
                         @forelse ($comments as $comment)
-                            <li class="border-b pb-2 relative">
+                            <li class="border-b pb-2">
+                                <div class="relative flex">
+                                <x-profile-pic :user="$comment->user" size="w-8 h-8" />
+                <div class="flex flex-col">
+                <div>
                                 <strong class="text-gray-800">{{ $comment->user->name }}</strong>
                                 @if (Auth::id() === $comment->userId)
                                 <div class="relative inline-block text-left">
@@ -41,9 +45,12 @@
                                         </div>
                                     </div>
                                 </div>
+                </div>
                                 @endif
 
                                 <p id="comment-text-{{ $comment->id }}" class="text-gray-600">{{ $comment->text }}</p>
+                </div>
+                                </div>
                             </li>
                         @empty
                             <p class="text-gray-600">No hay comentarios todavía.</p>
