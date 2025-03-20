@@ -3,7 +3,7 @@
 @section('description', 'Este es un blog de ejemplo creado con Laravel.')
 @section('keywords', 'blog, Laravel, ejemplo, tutorial')
 @section('Content')
-<h1>Hola mundo </h1>
+<h1>Toca Cesped!</h1>
 
 <ul>
     @forelse ($notes as $note)
