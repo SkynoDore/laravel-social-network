@@ -6,7 +6,7 @@ use App\Http\Controllers\NoteController;
 
 Route::get('/', [NoteController::class, 'index'])->name('index');
 //notes
-Route::get('/my-feed', [NoteController::class, 'profile'])->name('note.profile');
+Route::get('/profile', [NoteController::class, 'profile'])->name('note.profile');
 Route::get('/note/create', [NoteController::class, 'create'])->name('note.create');
 Route::post('/note/store', [NoteController::class,'store'])->name('note.store');
 Route::get('/note/edit/{note}', [NoteController::class, 'edit'])->name('note.edit');
@@ -21,9 +21,9 @@ Route::get('/dashboard', function () {
 
     //profile
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/config', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/config', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/config', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
     //comments

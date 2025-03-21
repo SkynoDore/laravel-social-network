@@ -20,7 +20,7 @@ class NoteController extends Controller
         return view("index", compact("notes"));
     }
 
-    public function Profile(): View //solo muestra las notas del usuario en concreto
+    public function profile(): View //solo muestra las notas del usuario en concreto
     {
         $notes = Note::with('user')
         ->where('userId', Auth::id()) // Filtrar por usuario autenticado

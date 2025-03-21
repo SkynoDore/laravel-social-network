@@ -122,3 +122,5 @@ Ejemplo para relacionar tabla "comments" a la tabla "note
 
     Para crear controlador:
         php artisan make:controller "name"
+
+        Tareas pendientes: unificar el formato del nombre de las tablas!
