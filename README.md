@@ -3,8 +3,8 @@ Documentación Bluebill
     Stack: Laravel + Blade with Alpine + Pest testing framework + Tailwind + Mariadb.
     Breeze Starter kit
 
-    Nombre del Proyecto: BlueBill
-
+    Nombre del Proyecto: TocaCesped
+   
     Descripción: Un simple feed donde usuarios verificados puedan subir sus noticias
 
     Requisitos Previos:  
@@ -14,7 +14,7 @@ Documentación Bluebill
         Node.js
         npm
  
- 2. Instalación
+ 3. Instalación
     Clonar el Proyecto
 
         git clone https://github.com/larnreact1511/bluebill-v3
@@ -51,7 +51,7 @@ Documentación Bluebill
 
         php artisan storage:link
 
-3. Ejecución
+4. Ejecución
     Iniciar el Servidor Local
 
         php artisan serve
