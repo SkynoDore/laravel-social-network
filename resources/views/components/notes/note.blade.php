@@ -35,7 +35,7 @@ comments
         <!-- Título y descripción -->
         <div class="px-6">
             <h3 class="mt-3 text-2xl font-semibold text-gray-900 hover:text-gray-600">
-                <a href="#">
+                <a href="/note/{{ $note}}">
                     <span></span>
                     {{ $title }}
                 </a>

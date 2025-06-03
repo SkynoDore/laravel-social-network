@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('Content')
-<a href="{{ route('note.index') }}" class="text-blue-600 hover:underline mb-4 inline-block">Volver</a>
+<a href="{{ route('index') }}" class="text-blue-600 hover:underline mb-4 inline-block">Volver</a>
 <ul>
 <x-notes.note-container>
     <x-notes.note
