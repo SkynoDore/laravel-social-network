@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Note;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
@@ -20,14 +21,20 @@ class NoteController extends Controller
         return view("index", compact("notes"));
     }
 
-    public function profile(): View //solo muestra las notas del usuario en concreto
+    public function profile($userId = null): View
     {
+        $userId = $userId ?? Auth::id(); // Si no se pasa, usamos el del usuario autenticado
+
+        $user = User::findOrFail($userId);
         $notes = Note::with('user')
-        ->where('userId', Auth::id()) // Filtrar por usuario autenticado
-        ->orderByDesc('created_at')
-        ->with(['comments' => function ($query) {$query->limit(3);}])
-        ->get();
-        return view("note.profile", compact("notes"));
+            ->where('userId', $userId)
+            ->orderByDesc('created_at')
+            ->with(['comments' => function ($query) {
+                $query->limit(3);
+            }])
+            ->get();
+
+        return view("note.profile", compact("notes", "user", "userId"));
     }
 
     public function show(Note $note): View //solo muestra una nota a la vez
