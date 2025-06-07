@@ -13,7 +13,9 @@
                                     <x-profile-pic :user="$comment->user" size="w-8 h-8" />
                                     <div class="flex flex-col">
                                         <div>
+                                            <a href="profile/{{$comment->user->id}}">
                                             <strong class="text-gray-800">{{ $comment->user->name }}</strong>
+                                            </a>
                                             @if (Auth::id() === $comment->userId)
                                                 <div class="relative inline-block text-left">
                                                     <button onclick="toggleMenu(event)"

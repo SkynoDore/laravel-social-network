@@ -17,7 +17,11 @@ class NoteController extends Controller
 
     public function index(): View //el verdadero index, muestra tooodos las notas de todos los usuarios
     {
-        $notes = Note::with('user')->orderByDesc('created_at')->with(['comments' => function ($query) {$query->limit(3);}])->get();
+        $notes = Note::with([
+        'user',
+        'comments' => function ($query) {$query->limit(3)->with('user');}])
+        ->orderByDesc('created_at')->get();
+
         return view("index", compact("notes"));
     }
 

@@ -47,12 +47,12 @@ comments
 
         <!-- Autor -->
         <div class="relative mt-6 flex items-center gap-x-4 px-6 pb-6">
-            <!-- compoente imagen de perfil -->
+            <!-- componente imagen de perfil -->
             <x-profile-pic :user="$user" size="w-12 h-12" />
             <!-- Pasamos el usuario -->
             <div class="text-sm">
                 <p class="font-semibold text-gray-900">
-                    <a href="#">
+                    <a href="profile/{{$user->id}}">
                         <span></span>
                         <!-- variable nombre de usuario-->
                         {{ $username ?? 'Usuario Desconocido' }} <!-- Usamos el nombre del usuario -->
