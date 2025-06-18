@@ -25,11 +25,19 @@ comments
                 class="relative z-10 rounded-full bg-gray-100 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-200">
                 {{ $categoria ?? 'General' }}</a>
 
-            @if (request()->is('my-feed'))
-                <div class="px-6 py-3 bg-green-100 text-green-800 rounded-lg shadow-md">
-                    {{ $slot }}
-                </div>
-            @endif
+        @if (auth()->check() && (auth()->id() === $user || auth()->user()?->role === 'admin'))
+    <div class="mt-4 space-x-2 text-sm">
+        <a href="{{ route('note.show', $note) }}" class="text-blue-500 hover:underline">Ver</a> |
+        <a href="{{ route('note.edit', $note) }}" class="text-yellow-500 hover:underline">Editar</a> |
+        <form method="POST" action="{{ route('note.destroy', $note) }}" class="inline">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="text-red-500 hover:underline"
+                onclick="return confirm('¿Estás seguro de eliminar esta nota?')">Borrar</button>
+        </form>
+    </div>
+@endif
+
         </div>
 
         <!-- Título y descripción -->
@@ -52,7 +60,7 @@ comments
             <!-- Pasamos el usuario -->
             <div class="text-sm">
                 <p class="font-semibold text-gray-900">
-                    <a href="profile/{{$user->id}}">
+                    <a href="profile/{{$user->id ?? ''}}">
                         <span></span>
                         <!-- variable nombre de usuario-->
                         {{ $username ?? 'Usuario Desconocido' }} <!-- Usamos el nombre del usuario -->

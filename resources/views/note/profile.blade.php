@@ -29,15 +29,6 @@
                 :username="$note->user->name"
                 :user="$note->user"
                 :comments="$note->comments">
-                    <!-- Botones pasados como slot -->
-                    <a href="{{ route('note.show', $note->id) }}" class="text-blue-500 hover:underline">Ver</a> |
-                    <a href="{{ route('note.edit', $note->id) }}" class="text-yellow-500 hover:underline">Editar</a> |
-                    <form method="POST" action="{{ route('note.destroy', $note->id) }}" class="inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="text-red-500 hover:underline"
-                            onclick="return confirm('¿Estás seguro de eliminar esta nota?')">Borrar</button>
-                    </form>
                 </x-notes.note>
             </x-notes.note-container>
         @empty

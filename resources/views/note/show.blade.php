@@ -10,7 +10,7 @@
     :description="$note->description"
     :created="$note->created_at"
     :image="$note->image"
-    :username="$note->user->name"
+    :username="$note->user->name ?? 'Usuario eliminado'"
     :user="$note->user"
     :comments="$note->comments">
     </x-notes.note>
