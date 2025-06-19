@@ -6,7 +6,7 @@
 <form method="POST" action="{{ route('note.store') }}" enctype="multipart/form-data"
       class="w-3/6 mx-auto bg-white p-6 rounded-lg shadow-md space-y-6">
     @csrf
-
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Crear Nota</h2>
     <!-- Título -->
     <div>
         <label for="title" class="block text-gray-700 font-medium">Título:</label>
@@ -44,7 +44,7 @@
     <div>
         <button type="submit"
                 class="w-full bg-blue-600 text-white font-semibold py-2 rounded-md hover:bg-blue-700 transition">
-            Crear Nota
+            Crear
         </button>
     </div>
 </form>
