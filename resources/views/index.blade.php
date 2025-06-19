@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Bienvenido a Mi Blog')
-@section('description', 'Este es un blog de ejemplo creado con Laravel.')
-@section('keywords', 'blog, Laravel, ejemplo, tutorial')
+@section('title', 'Toca Cesped')
+@section('description', 'Red social de amantes de la activididad fisica y el aire libre.')
+@section('keywords', 'Social, deporte, actividad fisica, aire libre, comunidad, notas, comentarios')
 @section('Content')
 <h1>Toca Cesped!</h1>
 

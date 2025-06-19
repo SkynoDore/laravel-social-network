@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
@@ -22,11 +22,6 @@
         @include('layouts.guest-navigation') {{-- Navegación para invitados --}}
     @endauth
 
-    @isset($header)
-        <header>
-                {{ $header }}
-        </header>
-    @endisset
     <div class="container w-7xl mx-auto p-3 pt-6 ">
 
         @yield('Content')

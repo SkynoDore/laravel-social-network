@@ -27,8 +27,7 @@ comments
 
         @if (auth()->check() && (auth()->id() === $user || auth()->user()?->role === 'admin'))
     <div class="mt-4 space-x-2 text-sm">
-        <a href="{{ route('note.show', $note) }}" class="text-blue-500 hover:underline">Ver</a> |
-        <a href="{{ route('note.edit', $note) }}" class="text-yellow-500 hover:underline">Editar</a> |
+        <a href="{{ route('note.edit', $note) }}" class="text-blue-500 hover:underline">Editar</a> |
         <form method="POST" action="{{ route('note.destroy', $note) }}" class="inline">
             @csrf
             @method('DELETE')
@@ -63,7 +62,7 @@ comments
                     <a href="profile/{{$user->id ?? ''}}">
                         <span></span>
                         <!-- variable nombre de usuario-->
-                        {{ $username ?? 'Usuario Desconocido' }} <!-- Usamos el nombre del usuario -->
+                        {{ $username ?? 'Usuario Desconocido' }}
                     </a>
                 </p>
                 <p class="text-gray-600">{{ $CategoriaUsuarios ?? ' Nuevo ' }}</p>

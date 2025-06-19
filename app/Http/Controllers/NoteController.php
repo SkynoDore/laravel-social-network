@@ -20,7 +20,7 @@ class NoteController extends Controller
         $notes = Note::with([
         'user',
         'comments' => function ($query) {$query->limit(3)->with('user');}])
-        ->orderByDesc('created_at')->get();
+        ->latest()->get();
 
         return view("index", compact("notes"));
     }
@@ -32,7 +32,7 @@ class NoteController extends Controller
         $user = User::findOrFail($userId);
         $notes = Note::with('user')
             ->where('userId', $userId)
-            ->orderByDesc('created_at')
+            ->latest()
             ->with(['comments' => function ($query) {
                 $query->limit(3);
             }])
@@ -96,7 +96,7 @@ class NoteController extends Controller
             $note->image = $imagePath;
             $note->save();
         }
-        return redirect()->route('note.profile')->with('success', 'Nota actualizada correctamente.');
+        return redirect()->route('note.show', $note)->with('success', 'Nota actualizada correctamente.');
     }
 
 

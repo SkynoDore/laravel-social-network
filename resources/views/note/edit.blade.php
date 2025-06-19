@@ -2,7 +2,7 @@
 
 @section('Content')
 <!-- Botón de vuelta -->
-<a href="{{ route('note.index') }}" class="text-blue-600 hover:underline mb-4 inline-block">Volver</a>
+<a href="{{ route('index') }}" class="text-blue-600 hover:underline mb-4 inline-block">Volver</a>
 
 <!-- Formulario para editar la nota -->
 <form method="POST" action="{{ route('note.update', $note->id) }}" class="w-3/6 mx-auto bg-white p-6 rounded-lg shadow-md space-y-6">
