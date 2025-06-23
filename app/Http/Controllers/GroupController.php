@@ -6,9 +6,15 @@ use Illuminate\Http\Request;
 
 class GroupController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $groups = Group::withCount('notes')->get();
+        $groups = Group::withCount('notes');
+
+        if ($request->filled('search')) {
+            $groups->where('title', 'like', '%' . $request->input('search') . '%');
+        }
+
+        $groups = $groups->get();
         return view('group.index', compact('groups'));
     }
 

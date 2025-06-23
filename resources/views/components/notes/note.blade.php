@@ -8,7 +8,7 @@ user
 comments
 -->
 <li>
-    <article class="w-3/6 mx-auto flex flex-col items-start justify-between bg-white shadow-md rounded-lg">
+    <article class="w-full sm:w-3/6 mx-auto flex flex-col items-start justify-between bg-white shadow-md rounded-lg">
         <!-- Imagen superior -->
         @if (!empty($image))
             <!-- Verifica que la imagen no esté vacía ni nula -->

@@ -17,6 +17,9 @@
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
         </div>
+        @if ($group)
+        <input type="hidden" name="group_id" value="{{ $group->id }}">
+        @endif
 
         <!-- Descripción -->
         <div>

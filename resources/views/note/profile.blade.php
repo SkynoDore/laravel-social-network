@@ -15,8 +15,6 @@
             </a>
         @endif
     </div>
-
-
     <ul>
         @forelse ($notes as $note)
             <x-notes.note-container>

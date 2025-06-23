@@ -13,7 +13,7 @@ return new class extends Migration
     {
 
             Schema::table('notes', function (Blueprint $table) {
-            $table->string('category')->default('general');
+            $table->string('category')->default('General');
             $table->foreignId('group_id')
                   ->nullable()
                   ->constrained('groups')

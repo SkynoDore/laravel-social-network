@@ -12,7 +12,7 @@ use Illuminate\View\View;
 use App\Http\Requests\NoteRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-
+use App\Models\Group;
 
 class NoteController extends Controller
 {
@@ -64,11 +64,12 @@ class NoteController extends Controller
         return view('note.category', compact('notes', 'category'));
     }
 
-    public function create(): View
+    public function create(Request $request): View
     {
-        $notes = Note::all();
+        $groupId = $request->query('group'); // null si no se pasa
+        $group = $groupId ? Group::find($groupId) : null;
 
-        return view("note.create");
+        return view("note.create", compact('group'));
     }
     public function store(NoteRequest $request): RedirectResponse
     {
@@ -79,6 +80,7 @@ class NoteController extends Controller
                 'userId' => Auth::id(),  // ID del usuario autenticado
                 'description' => $request->input('description'),
                 'category' => $request->input('category'),
+                 'group_id' => $request->input('group_id'),
             ]);
 
             // Guarda la imagen si se subió
