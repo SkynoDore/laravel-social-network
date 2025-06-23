@@ -3,7 +3,8 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "import": "php artisan import:groups --source='https://datos.madrid.es/egob/catalogo/200215-0-instalaciones-deportivas.json'"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",

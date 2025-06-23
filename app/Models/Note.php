@@ -12,7 +12,9 @@ class Note extends Model
         "title",
         "description",
         "image",
-        'userId',];
+        'userId',
+        'category',
+        'group_id',];
         public function user()
     {
         return $this->belongsTo(User::class, 'userId');
@@ -22,4 +24,8 @@ class Note extends Model
         return $this->hasMany(Comment::class, 'noteId');
     }
 
+    public function group()
+    {
+        return $this->belongsTo(Group::class, 'group_id');
+    }
 }

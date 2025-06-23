@@ -28,7 +28,8 @@
                 :image="$note->image"
                 :username="$note->user->name"
                 :user="$note->user"
-                :comments="$note->comments">
+                :comments="$note->comments"
+                :category="$note->category">
                 </x-notes.note>
             </x-notes.note-container>
         @empty

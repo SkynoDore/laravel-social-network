@@ -3,13 +3,13 @@
 @section('Content')
     <!-- Botón de vuelta -->
     <div class="space-x-2 text-sm flex gap-x-4">
-    <a href="{{ route('index') }}" class="text-blue-600 hover:underline mb-4 inline-block">Volver</a>
-    <form method="POST" action="{{ route('note.destroy', $note) }}" class="inline">
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="text-red-500 hover:underline"
-            onclick="return confirm('¿Estás seguro de eliminar esta nota?')">Borrar nota</button>
-    </form>
+        <a href="{{ route('index') }}" class="text-blue-600 hover:underline mb-4 inline-block">Volver</a>
+        <form method="POST" action="{{ route('note.destroy', $note) }}" class="inline">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="text-red-500 hover:underline"
+                onclick="return confirm('¿Estás seguro de eliminar esta nota?')">Borrar nota</button>
+        </form>
     </div>
     <!-- Formulario para editar la nota -->
     <form method="POST" action="{{ route('note.update', $note->id) }}" enctype="multipart/form-data"
@@ -40,6 +40,16 @@
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
         </div>
+        <!-- Categoría -->
+        <select name="category" id="category" class="...">
+            @foreach (['General', 'Deporte', 'Cultura', 'Social'] as $cat)
+                <option value="{{ $cat }}" @selected(old('category', $note->category ?? '') == $cat)>
+                    {{ $cat }}
+                </option>
+            @endforeach
+        </select>
+
+        <!-- Imagen -->
         @if (!empty($note->image))
             <!-- Verifica que la imagen no esté vacía ni nula -->
             <div class="w-full h-full">

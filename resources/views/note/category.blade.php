@@ -3,7 +3,7 @@
 @section('description', 'Red social de amantes de la activididad fisica y el aire libre.')
 @section('keywords', 'Social, deporte, actividad fisica, aire libre, comunidad, notas, comentarios')
 @section('Content')
-<h1>Toca Cesped!</h1>
+<h1>{{ ucfirst($category) }}</h1>
 
 <ul>
     @forelse ($notes as $note)

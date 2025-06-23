@@ -18,6 +18,9 @@
                     <x-nav-link href="{{ route('note.profile') }}">
                         {{ __('Mis publicaciones') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('group.index') }}">
+                        {{ __('Grupos') }}
+                    </x-nav-link>
                     @auth
                         @if (auth()->user()->role === 'admin')
                             <x-nav-link href="{{ route('admin.users.index') }}">
@@ -94,6 +97,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('note.profile')">
                 {{ __('Mis publicaciones') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('group.index')">
+                {{ __('Grupos') }}
             </x-responsive-nav-link>
               @auth
         @if (auth()->user()->role === 'admin')

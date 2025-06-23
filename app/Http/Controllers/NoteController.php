@@ -54,6 +54,16 @@ class NoteController extends Controller
         return view('note.show', compact('note', 'comments'));
     }
 
+    public function category($category): View
+    {
+        $notes = Note::with('user')
+            ->where('category', $category)
+            ->latest()
+            ->get();
+
+        return view('note.category', compact('notes', 'category'));
+    }
+
     public function create(): View
     {
         $notes = Note::all();
@@ -68,6 +78,7 @@ class NoteController extends Controller
                 'title' => $request->input('title'),
                 'userId' => Auth::id(),  // ID del usuario autenticado
                 'description' => $request->input('description'),
+                'category' => $request->input('category'),
             ]);
 
             // Guarda la imagen si se subió
@@ -93,6 +104,8 @@ class NoteController extends Controller
         $note->update([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
+            'category' => $request->input('category'),
+            // el id del usuario no se actualiza, ya que no debería cambiar
         ]);;
 
         if (($request->filled('delete_image') || $request->hasFile('image')) && $note->image) {

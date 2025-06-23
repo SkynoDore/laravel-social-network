@@ -6,6 +6,7 @@ use App\Http\Controllers\NoteController;
 use App\Http\Middleware\CheckRole;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\GroupController;
 
 Route::get('/', [NoteController::class, 'index'])->name('index');
 //profile
@@ -20,6 +21,8 @@ Route::put('/note/update/{note}', [NoteController::class, 'update'])->name('note
 Route::get('/note/{note}', [NoteController::class, 'show'])->name('note.show');
 Route::delete('/note/destroy/{note}', [NoteController::class, 'destroy'])->name('note.destroy');
 
+Route::get('/category/{category}', [NoteController::class, 'category'])->name('note.category');
+
 //dashboard para admins
 Route::middleware(['auth', CheckRole::class . ':admin'])->group(function () {
     Route::get('/dashboard', [UserController::class, 'index'])->name('admin.users.index');
@@ -28,7 +31,8 @@ Route::middleware(['auth', CheckRole::class . ':admin'])->group(function () {
     Route::delete('/dashboard/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
 });
 
-
+Route::get('/groups', [GroupController::class, 'index'])->name('group.index');
+Route::get('/group/{group}', [GroupController::class, 'show'])->name('group.show');
 
 //profile settings
 Route::middleware('auth')->group(function () {

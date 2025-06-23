@@ -5,7 +5,7 @@ Documentación TocaCesped
 
     Nombre del Proyecto: TocaCesped
    
-    Descripción: Un simple feed donde usuarios verificados puedan subir sus noticias
+    Descripción: Un simple feed donde usuarios verificados puedan subir sus noticias, con comentarios y categorias. grupos de parques. gestión de usuarios desde el panel de admin
 
     Requisitos Previos:  
 
@@ -14,7 +14,7 @@ Documentación TocaCesped
         Node.js
         npm
  
- 3. Instalación
+ 2. Instalación
     Clonar el Proyecto
 
         git clone https://github.com/larnreact1511/bluebill-v3
@@ -45,19 +45,12 @@ Documentación TocaCesped
     Instalar Dependencias Frontend, en la terminal introducir: 
 
         npm install
-        npm run dev
 
     Crear el enlace simbólico para la carpeta de almacenamiento:
 
         php artisan storage:link
 
-4. Ejecución
-    Iniciar el Servidor Local
-
-        php artisan serve
-
-
-2. Estructura del Proyecto
+3. Estructura del Proyecto
 
         app/: Contiene la lógica de la aplicación.
         bootstrap/: Archivo app.php para inicializar la aplicación. No está relacionado con front-end ni con Bootstrap CSS.
@@ -72,7 +65,19 @@ Documentación TocaCesped
         tests/: Pruebas unitarias y funcionales.
         vendor/: Dependencias gestionadas por Composer.
 
-3. luego en produccion fijarse de que upload_max_filesize y post_max_size sea de almenos 10240
+4. Ejecución
+    Iniciar el Servidor Local
+
+        npm run dev
+        php artisan serve
+        (la direccion de la ultima es la que hay que utilizar)
+
+
+Notas: 
+luego en produccion fijarse de que upload_max_filesize y post_max_size sea de almenos 10240
+
+Comando para actualizar la API:
+"npm run import"
 
 4. Overview de la logica
 
@@ -90,6 +95,8 @@ realizar modelo:
     php artisan make:model Comment
 
 debes definir los campos que pueden ser asignados masivamente ($fillable) y los que deben permanecer protegidos ($guarded). 
+
+
 para establecer relacion con otros modelos:
 
 Ejemplo para relacionar tabla "comments" a la tabla "note
@@ -123,4 +130,6 @@ Ejemplo para relacionar tabla "comments" a la tabla "note
     Para crear controlador:
         php artisan make:controller "name"
 
-        Tareas pendientes: unificar el formato del nombre de las tablas!
+  Almacenaje: 
+  las imagenes de las notas se almacenan en storage/public/images
+  y las de las foto de perfil en storage/public/profileImages
