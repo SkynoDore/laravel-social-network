@@ -3,14 +3,14 @@
 @section('description', 'Red social de amantes de la activididad fisica y el aire libre.')
 @section('keywords', 'Social, deporte, actividad fisica, aire libre, comunidad, notas, comentarios')
 @section('Content')
-@if ($user->id === Auth::id())
+@auth
         <div class="flex flex-col justify-center items-center text-center">
             <a href="{{ route('note.create') }}"
                 class="inline-block px-6 py-2 text-white bg-blue-500 hover:bg-blue-700 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
                 Crear nota
             </a>
             </div>
-        @endif
+@endauth
 <ul>
     @forelse ($notes as $note)
     <x-notes.note-container>

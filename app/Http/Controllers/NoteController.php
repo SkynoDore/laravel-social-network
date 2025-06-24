@@ -18,32 +18,35 @@ class NoteController extends Controller
 {
 
     public function index(): View
-    {
-        $userId = $userId ?? Auth::id();
-        $user = User::findOrFail($userId);
+{
+    $user = null;
 
-        $notes = Note::with([
-            'user',
-            'group',
-            'likedByUsers',
-            'comments' => function ($query) {
-                $query->limit(3)->with('user');
-            }
-        ])
-            ->latest()
-            ->get();
-
-        $likedNoteIds = [];
-
-        if (Auth::check()) {
-            $likedNoteIds = Auth::user()
-                ->likedNotes()
-                ->pluck('note_id')
-                ->toArray();
-        }
-
-        return view("index", compact("notes", "likedNoteIds", "user"));
+    if (Auth::check()) {
+        $userId = Auth::id();
+        $user = User::find($userId); // find, no findOrFail para evitar excepción
     }
+
+    $notes = Note::with([
+        'user',
+        'group',
+        'likedByUsers',
+        'comments' => function ($query) {
+            $query->limit(3)->with('user');
+        }
+    ])
+    ->latest()
+    ->get();
+
+    $likedNoteIds = [];
+
+    if ($user) {
+        $likedNoteIds = $user->likedNotes()
+            ->pluck('note_id')
+            ->toArray();
+    }
+
+    return view("index", compact("notes", "likedNoteIds", "user"));
+}
 
 
     public function profile($userId = null): View
@@ -60,8 +63,7 @@ class NoteController extends Controller
         $likedNoteIds = [];
 
         if (Auth::check()) {
-            $likedNoteIds = Auth::user()
-                ->likedNotes()
+            $likedNoteIds = Auth::user()->likedNotes()
                 ->pluck('note_id')
                 ->toArray();
         }
