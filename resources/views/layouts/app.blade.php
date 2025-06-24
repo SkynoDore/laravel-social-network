@@ -5,9 +5,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Mi Aplicación')</title>
-    <meta name="description" content="@yield('description', 'Descripción predeterminada de mi aplicación')">
-    <meta name="keywords" content="@yield('keywords', 'blog, Laravel, aplicación')">
+    <title>@yield('title', 'Toca Cesped')</title>
+    <meta name="description" content="@yield('description', 'Red social de amantes de la activididad fisica y el aire libre.')">
+    <meta name="keywords" content="@yield('keywords', 'Social, deporte, actividad fisica, aire libre, comunidad, notas, comentarios')">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <meta property="og:title" content="@yield('title', 'Toca Cesped')">
+    <meta property="og:description" content="@yield('description', 'Red social de amantes de la activididad fisica y el aire libre.')">
+    <meta property="og:image" content="{{ asset('og-image.jpg') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
@@ -28,34 +37,35 @@
     </div>
 </body>
 <script>
-function toggleLike(noteId) {
- fetch(`/notes/${noteId}/like`, {
-        method: 'POST',
-        headers: {
-            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-            'Accept': 'application/json'
-        }
-    })
-    .then(response => {
-        if (!response.ok) throw new Error('Error al dar/quitar like');
-        return response.json();
-    })
-    .then(data => {
-        const countEl = document.getElementById(`like-count-${noteId}`);
-        const btnEl = document.getElementById(`like-btn-${noteId}`);
+    function toggleLike(noteId) {
+        fetch(`/notes/${noteId}/like`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Error al dar/quitar like');
+                return response.json();
+            })
+            .then(data => {
+                const countEl = document.getElementById(`like-count-${noteId}`);
+                const btnEl = document.getElementById(`like-btn-${noteId}`);
 
-        countEl.textContent = data.likes;
+                countEl.textContent = data.likes;
 
-        btnEl.classList.remove('text-red-600', 'text-gray-400');
-        if (data.hasLiked) {
-            btnEl.classList.add('text-red-600');
-        } else {
-            btnEl.classList.add('text-gray-400');
-        }
-    })
-    .catch(error => {
-        console.error(error);
-    });
-}
+                btnEl.classList.remove('text-red-600', 'text-gray-400');
+                if (data.hasLiked) {
+                    btnEl.classList.add('text-red-600');
+                } else {
+                    btnEl.classList.add('text-gray-400');
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
 </script>
+
 </html>
