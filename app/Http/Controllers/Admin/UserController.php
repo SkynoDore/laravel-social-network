@@ -26,29 +26,34 @@ class UserController extends Controller
     }
 
     public function update(Request $request, User $user)
-    {
-         $request->validate([
-            'name' => 'required|string|max:255',
-            'user_name' => 'required|string|max:255|unique:users,user_name,' . $user->id,
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'role' => 'required|string',
-            'password' => Password::defaults(),
+{
+    // Validaciones generales
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'user_name' => 'required|string|max:255|unique:users,user_name,' . $user->id,
+        'email' => 'required|email|unique:users,email,' . $user->id,
+        'role' => 'required|string',
+    ]);
+
+    // Validación condicional de contraseña
+    if ($request->filled('password')) {
+        $request->validate([
+            'password' => ['required', 'confirmed', Password::defaults()],
         ]);
-
-        $user->name = $request->name;
-        $user->user_name = $request->user_name;
-        $user->email = $request->email;
-        $user->role = $request->role;
-
-        if ($request->filled('password')) {
-            $user->password = Hash::make($request->password);
-        }
-
-        $user->save();
-
-        return redirect()->route('admin.users.index')->with('success', 'Usuario actualizado');
-
+        $user->password = Hash::make($request->password);
     }
+
+    // Asignación de otros campos
+    $user->name = $request->name;
+    $user->user_name = $request->user_name;
+    $user->email = $request->email;
+    $user->role = $request->role;
+
+    $user->save();
+
+    return redirect()->route('admin.users.index')->with('success', 'Usuario actualizado');
+}
+
 
     public function destroy(User $user)
     {

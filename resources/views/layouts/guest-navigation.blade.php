@@ -5,7 +5,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center text-green-600 font-bold text-xl">
                     <a href="{{ route('index') }}">
-                        TocaCesped!
+                        TocaCésped!
                     </a>
                 </div>
 
