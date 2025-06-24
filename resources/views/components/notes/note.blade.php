@@ -26,7 +26,7 @@
         <div class="flex flex-row justify-between w-full">
             <!-- Meta info -->
             <div class="flex items-center gap-x-4 text-xs px-6 py-3">
-                <time class="text-gray-500">{{ $created ?? 'no hay datos' }}</time>
+                <time class="text-gray-500">{{ $created->format('d/m/y H:i') ?? 'no hay datos' }}</time>
                 <a href="/category/{{ $category ?? 'general' }}"
                     class="relative z-10 rounded-full bg-gray-100 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-200">
                     {{ $category ?? 'General' }}
