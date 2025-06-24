@@ -31,8 +31,8 @@
                     class="relative z-10 rounded-full bg-gray-100 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-200">
                     {{ $category ?? 'General' }}
                 </a>
-
-                @if (auth()->check() && (auth()->id() === $user->id || auth()->user()->role === 'admin'))
+@isset($user)
+                @if (auth()->check() && (auth()->user()?->id === $user->id || auth()->user()?->role === 'admin'))
                     <div class="space-x-2 text-sm">
                         <a href="{{ route('note.edit', $note) }}" class="text-blue-500 hover:underline">Editar</a> |
                         <form method="POST" action="{{ route('note.destroy', $note) }}" class="inline">
@@ -43,7 +43,7 @@
                         </form>
                     </div>
                 @endif
-
+@endisset
             </div>
             <!--Ubicación del grupo si la hay-->
             <!-- Botón de like -->
