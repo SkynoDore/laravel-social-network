@@ -4,9 +4,9 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
+                <div class="shrink-0 flex items-center text-green-600 font-bold text-xl">
                     <a href="{{ route('index') }}">
-                        <x-application-logo class="block h-16 w-auto fill-current text-gray-800" />
+                        TocaCesped!
                     </a>
                 </div>
 
@@ -15,11 +15,8 @@
                     <x-nav-link href="{{ route('index') }}">
                         {{ __('Inicio') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('note.profile') }}">
-                        {{ __('Mis publicaciones') }}
-                    </x-nav-link>
                     <x-nav-link href="{{ route('group.index') }}">
-                        {{ __('Grupos') }}
+                        {{ __('Parques') }}
                     </x-nav-link>
                     @auth
                         @if (auth()->user()->role === 'admin')
@@ -55,8 +52,11 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        <x-dropdown-link href="{{ route('note.profile') }}">
+                            {{ __('Perfil') }}
+                        </x-dropdown-link>
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('Account Settings') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -95,11 +95,8 @@
             <x-responsive-nav-link :href="route('index')">
                 {{ __('Inicio') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('note.profile')">
-                {{ __('Mis publicaciones') }}
-            </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('group.index')">
-                {{ __('Grupos') }}
+                {{ __('Parques') }}
             </x-responsive-nav-link>
               @auth
         @if (auth()->user()->role === 'admin')
@@ -118,8 +115,11 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
+                <x-responsive-nav-link :href="route('note.profile')">
                     {{ __('Profile') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('profile.edit')">
+                    {{ __('Account Settings') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->

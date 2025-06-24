@@ -33,6 +33,7 @@ Route::middleware(['auth', CheckRole::class . ':admin'])->group(function () {
 
 Route::get('/groups', [GroupController::class, 'index'])->name('group.index');
 Route::get('/group/{group}', [GroupController::class, 'show'])->name('group.show');
+Route::get('/groups/nearby', [GroupController::class, 'nearby'])->name('group.nearby');
 
 //profile settings
 Route::middleware('auth')->group(function () {

@@ -13,7 +13,7 @@
     </div>
     <!-- Formulario para editar la nota -->
     <form method="POST" action="{{ route('note.update', $note->id) }}" enctype="multipart/form-data"
-        class="w-3/6 mx-auto bg-white p-6 rounded-lg shadow-md space-y-6">
+        class="w-full sm:w-3/6 mx-auto bg-white p-6 rounded-lg shadow-md space-y-6">
         @method('put') <!-- Establece el método HTTP como PUT para actualizar -->
         @csrf <!-- Token CSRF para la seguridad -->
         <h2 class="text-2xl font-semibold text-gray-800 mb-4">Editar Nota</h2>

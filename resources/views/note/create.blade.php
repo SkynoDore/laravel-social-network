@@ -4,7 +4,7 @@
     <a href="{{ route('note.profile') }}" class="text-blue-600 hover:underline mb-4 inline-block">Volver</a>
 
     <form method="POST" action="{{ route('note.store') }}" enctype="multipart/form-data"
-        class="w-3/6 mx-auto bg-white p-6 rounded-lg shadow-md space-y-6">
+        class="w-full sm:w-3/6 mx-auto bg-white p-6 rounded-lg shadow-md space-y-6">
         @csrf
         <h2 class="text-2xl font-semibold text-gray-800 mb-4">Crear Nota</h2>
         <!-- Título -->
