@@ -32,7 +32,7 @@ class UserController extends Controller
             'user_name' => 'required|string|max:255|unique:users,user_name,' . $user->id,
             'email' => 'required|email|unique:users,email,' . $user->id,
             'role' => 'required|string',
-            'password' => ['required', Password::defaults()],
+            'password' => Password::defaults(),
         ]);
 
         $user->name = $request->name;
