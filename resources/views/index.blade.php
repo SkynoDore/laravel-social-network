@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Toca Cesped')
+@section('title', 'Toca Césped')
 @section('description', 'Red social de amantes de la actividad física y el aire libre.')
 @section('keywords', 'Social, deporte, actividad fisica, aire libre, comunidad, notas, comentarios')
 @section('Content')

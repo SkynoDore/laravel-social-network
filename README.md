@@ -17,8 +17,7 @@ Documentación TocaCesped
  2. Instalación
     Clonar el Proyecto
 
-        git clone https://github.com/larnreact1511/bluebill-v3
-        cd bluebill-v3
+        git clone https://github.com/SkynoDore/laravel-social-network
 
     Descargar e Instalar Dependencias
 

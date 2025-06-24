@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Toca Cesped')</title>
+    <title>@yield('title', 'Toca Césped')</title>
     <meta name="description" content="@yield('description', 'Red social de amantes de la actividad física y el aire libre.')">
     <meta name="keywords" content="@yield('keywords', 'Social, deporte, actividad fisica, aire libre, comunidad, notas, comentarios')">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
