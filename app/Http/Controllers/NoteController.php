@@ -17,42 +17,74 @@ use App\Models\Group;
 class NoteController extends Controller
 {
 
-    public function index(): View //el verdadero index, muestra tooodos las notas de todos los usuarios
+    public function index(): View
     {
+        $userId = $userId ?? Auth::id();
+        $user = User::findOrFail($userId);
+
         $notes = Note::with([
             'user',
+            'group',
+            'likedByUsers',
             'comments' => function ($query) {
                 $query->limit(3)->with('user');
             }
         ])
-            ->latest()->get();
+            ->latest()
+            ->get();
 
-        return view("index", compact("notes"));
+        $likedNoteIds = [];
+
+        if (Auth::check()) {
+            $likedNoteIds = Auth::user()
+                ->likedNotes()
+                ->pluck('note_id')
+                ->toArray();
+        }
+
+        return view("index", compact("notes", "likedNoteIds", "user"));
     }
+
 
     public function profile($userId = null): View
     {
-        $userId = $userId ?? Auth::id(); // Si no se pasa, usamos el del usuario autenticado
+        $userId = $userId ?? Auth::id();
 
         $user = User::findOrFail($userId);
-        $notes = Note::with('user')
-            ->where('userId', $userId)
+        $notes = Note::with(['user', 'comments' => function ($query) {
+            $query->limit(3);
+        }])->where('userId', $userId)
             ->latest()
-            ->with(['comments' => function ($query) {
-                $query->limit(3);
-            }])
             ->get();
 
-        return view("note.profile", compact("notes", "user", "userId"));
+        $likedNoteIds = [];
+
+        if (Auth::check()) {
+            $likedNoteIds = Auth::user()
+                ->likedNotes()
+                ->pluck('note_id')
+                ->toArray();
+        }
+
+        return view("note.profile", compact("notes", "user", "userId", "likedNoteIds"));
     }
 
-    public function show(Note $note): View //solo muestra una nota a la vez
+
+    public function show(Note $note): View
     {
-        // Carga los comentarios de la nota
-        $comments = $note->comments()->with('user')->get();
+        $hasLiked = false;
 
-        return view('note.show', compact('note', 'comments'));
+        if (Auth::check()) {
+            $hasLiked = $note->likedByUsers()
+                ->where('user_id', Auth::id())
+                ->exists();
+        }
+
+        $comments = $note->comments()->with(['user', 'group'])->get();
+
+        return view('note.show', compact('note', 'comments', 'hasLiked'));
     }
+
 
     public function category($category): View
     {
@@ -61,8 +93,46 @@ class NoteController extends Controller
             ->latest()
             ->get();
 
-        return view('note.category', compact('notes', 'category'));
+        $likedNoteIds = [];
+
+        if (Auth::check()) {
+            $likedNoteIds = Auth::user()
+                ->likedNotes()
+                ->pluck('note_id')
+                ->toArray();
+        }
+
+        return view('note.category', compact('notes', 'category', 'likedNoteIds'));
     }
+
+
+    public function like(Note $note)
+    {
+        $user = Auth::id();
+
+        if (!$user) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
+        $hasLiked = $note->likedByUsers()->where('user_id', $user)->exists();
+
+        if ($hasLiked) {
+            $note->likedByUsers()->detach($user);
+            $note->decrement('likes');
+        } else {
+            $note->likedByUsers()->attach($user);
+            $note->increment('likes');
+        }
+
+        $note->refresh();
+
+        return response()->json([
+            'likes' => $note->likes,
+            'hasLiked' => !$hasLiked
+        ]);
+    }
+
+
 
     public function create(Request $request): View
     {
@@ -80,7 +150,7 @@ class NoteController extends Controller
                 'userId' => Auth::id(),  // ID del usuario autenticado
                 'description' => $request->input('description'),
                 'category' => $request->input('category'),
-                 'group_id' => $request->input('group_id'),
+                'group_id' => $request->input('group_id'),
             ]);
 
             // Guarda la imagen si se subió

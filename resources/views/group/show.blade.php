@@ -17,8 +17,19 @@
     <ul>
         @forelse ($notes as $note)
             <x-notes.note-container>
-                <x-notes.note :note="$note->id" :title="$note->title" :description="Str::words($note->description, 40)" :created="$note->created_at" :image="$note->image"
-                    :username="$note->user->name ?? 'Usuario eliminado'" :user="$note->user" :comments="$note->comments" :category="$note->category" />
+                <x-notes.note
+                :note="$note->id"
+                :title="$note->title"
+                :description="Str::words($note->description, 40)"
+                :created="$note->created_at"
+                :image="$note->image"
+                :username="$note->user->name ?? 'Usuario eliminado'"
+                :user="$note->user"
+                :comments="$note->comments"
+                :category="$note->category"
+                :group="$note->group"
+                :likes="$note->likes"
+                :liked="in_array($note->id, $likedNoteIds ?? [])" />
             </x-notes.note-container>
         @empty
             <p>No hay datos</p>

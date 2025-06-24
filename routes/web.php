@@ -20,7 +20,9 @@ Route::get('/note/edit/{note}', [NoteController::class, 'edit'])->name('note.edi
 Route::put('/note/update/{note}', [NoteController::class, 'update'])->name('note.update');
 Route::get('/note/{note}', [NoteController::class, 'show'])->name('note.show');
 Route::delete('/note/destroy/{note}', [NoteController::class, 'destroy'])->name('note.destroy');
-
+//notes like
+Route::post('/notes/{note}/like', [NoteController::class, 'like'])->middleware('auth')->name('notes.like');
+//notes category
 Route::get('/category/{category}', [NoteController::class, 'category'])->name('note.category');
 
 //dashboard para admins

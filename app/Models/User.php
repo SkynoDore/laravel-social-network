@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * @method \Illuminate\Database\Eloquent\Relations\BelongsToMany likedNotes()
+ */
+
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -22,7 +26,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'ProfileIMG'
+        'ProfileIMG',
+
     ];
 
     /**
@@ -48,14 +53,18 @@ class User extends Authenticatable
         ];
     }
 
-     // Relación con notas (opcional)
-     public function notes()
-     {
-         return $this->hasMany(Note::class, 'userId');
-     }
-        public function comments()
+    // Relación con notas (opcional)
+    public function notes()
+    {
+        return $this->hasMany(Note::class, 'userId');
+    }
+    public function comments()
     {
         return $this->hasMany(Comment::class, 'userId');
     }
+   public function likedNotes()
+{
+    return $this->belongsToMany(Note::class, 'note_user_like', 'user_id', 'note_id');
+}
 
 }

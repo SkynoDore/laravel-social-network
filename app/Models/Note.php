@@ -28,4 +28,10 @@ class Note extends Model
     {
         return $this->belongsTo(Group::class, 'group_id');
     }
+
+    public function likedByUsers()
+{
+    return $this->belongsToMany(User::class, 'note_user_like')->withTimestamps();
+}
+
 }

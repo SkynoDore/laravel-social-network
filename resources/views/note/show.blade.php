@@ -13,9 +13,13 @@
     :username="$note->user->name ?? 'Usuario eliminado'"
     :user="$note->user"
     :comments="$note->comments"
-    :category="$note->category">
+    :category="$note->category"
+    :group="$note->group"
+    :likes="$note->likes"
+    :liked="$hasLiked">
     </x-notes.note>
 </x-notes.note-container>
 </ul>
+
 @endsection
 

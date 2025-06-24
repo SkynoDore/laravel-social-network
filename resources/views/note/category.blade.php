@@ -18,6 +18,9 @@
                 :user="$note->user"
                 :comments="$note->comments"
                 :category="$note->category"
+                :group="$note->group"
+                :likes="$note->likes"
+                :liked="in_array($note->id, $likedNoteIds ?? [])"
             />
     </x-notes.note-container>
     @empty
