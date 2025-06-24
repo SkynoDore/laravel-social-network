@@ -32,7 +32,7 @@
                     {{ $category ?? 'General' }}
                 </a>
 
-                @if (auth()->check() && (auth()->id() === $user || auth()->user()?->role === 'admin'))
+                @if (auth()->check() && (auth()->id() === $user->id || auth()->user()->role === 'admin'))
                     <div class="space-x-2 text-sm">
                         <a href="{{ route('note.edit', $note) }}" class="text-blue-500 hover:underline">Editar</a> |
                         <form method="POST" action="{{ route('note.destroy', $note) }}" class="inline">
@@ -43,6 +43,7 @@
                         </form>
                     </div>
                 @endif
+
             </div>
             <!--Ubicación del grupo si la hay-->
             <!-- Botón de like -->
