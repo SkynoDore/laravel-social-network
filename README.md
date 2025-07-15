@@ -1,8 +1,4 @@
-![image](https://skynodore.github.io/images/social-network.jpeg)
-![image](ttps://skynodore.github.io/images/social-network2.jpeg)
-![image](https://skynodore.github.io/images/social-network3.jpeg)
-![image](https://skynodore.github.io/images/social-network4.jpeg)
-
+![image](https://github.com/SkynoDore/laravel-social-network/blob/main/public/og-image.jpg)
 Documentación TocaCesped
 1. Introducción
     Stack: Laravel + Blade with Alpine + Pest testing framework + Tailwind + Mariadb.
@@ -10,8 +6,13 @@ Documentación TocaCesped
 
     Nombre del Proyecto: TocaCesped
    
-    Descripción: Un simple feed donde usuarios verificados puedan subir sus noticias, con comentarios y categorias. grupos de parques. gestión de usuarios desde el panel de admin
+    Descripción: Un simple feed donde usuarios verificados puedan subir sus noticias, con comentarios, categorias y likes. Grupos sociales de parques. Busqueda de parques utilizando filtros o geolocalizaciòn. Gestión de usuarios y contenidos desde el panel de admin
 
+    ![image](https://skynodore.github.io/images/social-network.jpeg)
+    ![image](ttps://skynodore.github.io/images/social-network2.jpeg)
+    ![image](https://skynodore.github.io/images/social-network3.jpeg)
+    ![image](https://skynodore.github.io/images/social-network4.jpeg)
+   
     Requisitos Previos:  
 
         XAMP o descargar por separado PHP 8.x y MySQL
@@ -19,7 +20,7 @@ Documentación TocaCesped
         Node.js
         npm
  
- 2. Instalación
+ 3. Instalación
     Clonar el Proyecto
 
         git clone https://github.com/SkynoDore/laravel-social-network
@@ -54,7 +55,7 @@ Documentación TocaCesped
 
         php artisan storage:link
 
-3. Estructura del Proyecto
+4. Estructura del Proyecto
 
         app/: Contiene la lógica de la aplicación.
         bootstrap/: Archivo app.php para inicializar la aplicación. No está relacionado con front-end ni con Bootstrap CSS.
@@ -69,7 +70,7 @@ Documentación TocaCesped
         tests/: Pruebas unitarias y funcionales.
         vendor/: Dependencias gestionadas por Composer.
 
-4. Ejecución
+5. Ejecución
     Iniciar el Servidor Local
 
         npm run dev
