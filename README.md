@@ -9,7 +9,7 @@ Documentación TocaCesped
     Descripción: Un simple feed donde usuarios verificados puedan subir sus noticias, con comentarios, categorias y likes. Grupos sociales de parques. Busqueda de parques utilizando filtros o geolocalizaciòn. Gestión de usuarios y contenidos desde el panel de admin
 
     ![image](https://skynodore.github.io/images/social-network.jpeg)
-    ![image](ttps://skynodore.github.io/images/social-network2.jpeg)
+    ![image](https://skynodore.github.io/images/social-network2.jpeg)
     ![image](https://skynodore.github.io/images/social-network3.jpeg)
     ![image](https://skynodore.github.io/images/social-network4.jpeg)
    
