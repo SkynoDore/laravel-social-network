@@ -82,7 +82,7 @@ class NoteController extends Controller
                 ->exists();
         }
 
-        $comments = $note->comments()->with(['user', 'group'])->get();
+        $comments = $note->comments()->with(['user'])->get();
 
         return view('note.show', compact('note', 'comments', 'hasLiked'));
     }

@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('groups', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
             $table->string('uid')->unique(); // ID externo único del API
             $table->string('title');
