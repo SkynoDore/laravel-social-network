@@ -179,7 +179,6 @@ class NoteController extends Controller
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'category' => $request->input('category'),
-            // el id del usuario no se actualiza, ya que no debería cambiar
         ]);;
 
         if (($request->filled('delete_image') || $request->hasFile('image')) && $note->image) {

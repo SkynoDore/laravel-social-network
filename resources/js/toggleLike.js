@@ -1,6 +1,5 @@
 function toggleLike(noteId) {
     document.addEventListener('DOMContentLoaded', () => {
-    console.log('toggleLike.js cargado y DOM listo');
 });
  fetch(`/notes/${noteId}/like`, {
         method: 'POST',

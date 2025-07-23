@@ -8,6 +8,10 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\GroupController;
 
+Route::get('/welcome', function () {
+    return view('welcome');
+})->name('welcome');
+
 Route::get('/', [NoteController::class, 'index'])->name('index');
 //profile
 Route::get('/profile', [NoteController::class, 'profile'])->name('note.profile');

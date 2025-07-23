@@ -1,6 +1,5 @@
 // Asignar eventos cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("Iniciando script de comentarios...");
 
     document.addEventListener("click", function (event) {
         // Crear comentario
@@ -10,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             let form = event.target.closest("form");
             if (!form) {
-                console.error("No se encontró un formulario asociado.");
                 return;
             }
 
@@ -19,11 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
             let commentBox = form.closest("article").querySelector(".commentBox");
 
             if (!commentBox) {
-                console.error("No se encontró el contenedor de comentarios.");
                 return;
             }
-
-            console.log("Enviando petición a:", url);
 
             fetch(url, {
                 method: "POST",
@@ -35,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log("Respuesta del servidor recibida:", data);
                     if (data.success) {
                         let newComment = document.createElement("li");
                         newComment.classList.add("border-b", "pb-2", "relative");
@@ -77,7 +71,6 @@ if (event.target.closest('#UpdateComment')) {
     })
     .then(response => response.json())
     .then(data => {
-        console.log("Respuesta del servidor recibida:", data);
         if (data.success) {
             let commentId = form.dataset.commentId;
             document.querySelector(`#comment-text-${commentId}`).textContent = text;
@@ -103,7 +96,6 @@ if (event.target.closest('#UpdateComment')) {
         })
             .then(response => response.json())
             .then(data => {
-                console.log("Respuesta del servidor recibida:", data);
                 if (data.success) {
                     form.closest("li").remove();
                 }

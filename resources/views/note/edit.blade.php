@@ -2,8 +2,8 @@
 
 @section('Content')
     <!-- Botón de vuelta -->
-    <div class="space-x-2 text-sm flex gap-x-4">
-        <a href="{{ route('index') }}" class="text-blue-600 hover:underline mb-4 inline-block">Volver</a>
+    <div class="space-x-2 flex gap-x-4 w-full sm:w-3/6 mx-auto mb-4">
+        <a href="{{ route('index') }}" class="text-blue-600 hover:underline inline-block">Volver</a>
         <form method="POST" action="{{ route('note.destroy', $note) }}" class="inline">
             @csrf
             @method('DELETE')
