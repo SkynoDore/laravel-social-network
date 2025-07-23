@@ -27,12 +27,10 @@
 
   <h2 class="text-xl font-semibold mb-2">¿Qué puedes hacer en esta red social?</h2>
   <ul class="list-disc pl-6 mb-6">
-    <li>Registro e inicio de sesión sencillos</li>
-    <li>Personalización de perfil</li>
-    <li>Buscador de parques con filtros y geolocalización</li>
-    <li>Publicaciones con imágenes</li>
-    <li>Sistema de comentarios</li>
-    <li>Comparte tus parques favoritos</li>
+    <li>Configurar tu <a href="{{route('profile.edit')}}" class="text-blue-600 hover:underline">perfil</a></li>
+    <li><a href="{{route('group.index')}}" class="text-blue-600 hover:underline">Buscador de parques</a> con filtros y geolocalización</li>
+    <li><a href="{{route('note.create')}}" class="text-blue-600 hover:underline">Publicar</a> lo que piensas</li>
+    <li>Comentar publicaciones</li>
     <li>Sistema de likes y dislikes</li>
   </ul>
 

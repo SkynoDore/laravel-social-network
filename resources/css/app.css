@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 /* Estilos globales para los headings */
+
 h1 {
     @apply text-4xl font-bold text-gray-800 text-center;
 }

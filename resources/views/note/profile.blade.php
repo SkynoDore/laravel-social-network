@@ -16,10 +16,14 @@
     </div>
 
         @if ($user->id === Auth::id())
-        <div class="flex flex-col justify-center items-center text-center pb-3">
+        <div class="flex flex-row gap-4 justify-center items-center text-center  pb-3">
             <a href="{{ route('note.create') }}"
                 class="inline-block px-6 py-2 text-white bg-blue-500 hover:bg-blue-700 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
                 Crear nota
+            </a>
+            <a href="{{ route('profile.edit') }}"
+                class="inline-block px-6 py-2 text-white bg-gray-500 hover:bg-gray-700 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                Editar perfil
             </a>
             </div>
         @endif
@@ -34,7 +38,9 @@
                 </x-notes.note>
             </x-notes.note-container>
         @empty
-            <p>No hay datos</p>
+        <div class="text-center">
+            <p>No tienes ninguna nota todavía, ¡prueba hacer una!</p>
+        </div>
         @endforelse
     </ul>
 @endsection

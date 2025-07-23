@@ -9,6 +9,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            <a href="{{ route('note.profile') }}" class="text-blue-600 hover:underline inline-block"><x-heroicon-o-arrow-uturn-left class="h-5 w-5 inline-block" /> Visualizar perfil</a>
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="max-w-xl">
                     @include('profile.partials.update-profile-information-form')

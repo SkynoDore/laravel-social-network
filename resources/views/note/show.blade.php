@@ -2,7 +2,7 @@
 
 @section('Content')
 <div class="w-full sm:w-3/6 mx-auto mb-4">
-<a href="{{ route('index') }}" class="text-blue-600 hover:underline inline-block">Volver</a>
+<a href="{{ route('index') }}" class="text-blue-600 hover:underline inline-block"><x-heroicon-o-arrow-uturn-left class="h-5 w-5 inline-block" />Volver</a>
 </div>
 <ul>
 <x-notes.note-container>
