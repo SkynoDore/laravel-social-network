@@ -135,6 +135,9 @@ Ejemplo para relacionar tabla "comments" a la tabla "note
     Para crear controlador:
         php artisan make:controller "name"
 
-  Almacenaje: 
-  las imagenes de las notas se almacenan en storage/public/images
-  y las de las foto de perfil en storage/public/profileImages
+    Almacenaje: 
+        las imagenes de las notas se almacenan en storage/public/images
+        y las de las foto de perfil en storage/public/profileImages
+
+    Al añadir nuevas vistas, en produccion hay que ejecutar este comando php artisan route:clear
+

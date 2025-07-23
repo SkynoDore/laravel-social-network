@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('note_user_like', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
             $table->foreignId('note_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
